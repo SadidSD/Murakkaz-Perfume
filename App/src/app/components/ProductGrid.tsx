@@ -7,9 +7,17 @@ import styles from "./ProductGrid.module.css";
 
 interface ProductGridProps {
   products: Product[];
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
 }
 
-export default function ProductGrid({ products }: ProductGridProps) {
+export default function ProductGrid({
+  products,
+  currentPage,
+  totalPages,
+  onPageChange,
+}: ProductGridProps) {
   return (
     <div className={styles.container}>
       {products.length === 0 ? (
@@ -33,7 +41,13 @@ export default function ProductGrid({ products }: ProductGridProps) {
         </div>
       )}
 
-      {products.length > 0 && <Pagination currentPage={1} totalPages={1} />}
+      {products.length > 0 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={onPageChange}
+        />
+      )}
     </div>
   );
 }

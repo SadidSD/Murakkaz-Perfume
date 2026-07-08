@@ -18,6 +18,7 @@ export default function Home() {
 
   const [maxPrice, setMaxPrice] = useState<number>(3000);
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const handleCheckboxChange = (categoryId: string, option: string) => {
     setSelectedFilters((prev) => {
@@ -31,14 +32,23 @@ export default function Home() {
         [categoryId]: updated,
       };
     });
+    setCurrentPage(1); // Reset page to 1 on filter change
   };
 
   const handlePriceChange = (price: number) => {
     setMaxPrice(price);
+    setCurrentPage(1); // Reset page to 1 on price filter change
   };
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
+    setCurrentPage(1); // Reset page to 1 on search change
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    // Smooth scroll back to top of main catalog section on page change
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   // Filter Catalog logic
@@ -77,6 +87,13 @@ export default function Home() {
     return true;
   });
 
+  // Pagination slicing
+  const itemsPerPage = 12;
+  const totalPages = Math.max(1, Math.ceil(filteredProducts.length / itemsPerPage));
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -91,7 +108,12 @@ export default function Home() {
             maxPrice={maxPrice}
             onPriceChange={handlePriceChange}
           />
-          <ProductGrid products={filteredProducts} />
+          <ProductGrid
+            products={paginatedProducts}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
         </div>
 
         {/* Explore Our Recommendation Section */}
