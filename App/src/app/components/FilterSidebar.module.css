@@ -23,7 +23,7 @@
 }
 
 .categoryBlock {
-  border-bottom: 1px solid rgba(118, 118, 119, 0.15);
+  /* Removed bottom border to eliminate underlines under categories */
 }
 
 .headerBtn {
