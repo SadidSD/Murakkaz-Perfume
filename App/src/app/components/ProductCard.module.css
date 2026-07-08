@@ -179,14 +179,14 @@
 
 .quickView {
   background: transparent;
-  border: 1px solid #767677;
-  color: #555558;
+  border: 1px solid #2F0909;
+  color: #2F0909;
 }
 
 .quickView:hover {
-  background-color: rgba(118, 118, 119, 0.05);
-  border-color: #313134;
-  color: #313134;
+  background-color: rgba(47, 9, 9, 0.05);
+  border-color: #2F0909;
+  color: #2F0909;
 }
 
 .bagNow {
