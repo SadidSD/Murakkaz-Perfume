@@ -1,0 +1,534 @@
+/* ==============================
+   Events Page — page.module.css
+   Matches the provided design spec
+   ============================== */
+
+.page {
+  --background: #f5f1e8;
+  --foreground: #313134;
+  --muted: #7a7a7d;
+  --border: #d8d5cd;
+  --dark-bg: #313134;
+  --dark-card: #3e3e42;
+  --accent: #313134;
+
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  font-family: var(--font-geist-sans), sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  padding: 3rem 1.5rem 5rem;
+  gap: 5rem;
+}
+
+/* ==============================
+   Shared Headings
+   ============================== */
+
+.sectionHeadingLarge {
+  font-family: var(--font-playfair), var(--font-lora), serif;
+  font-size: 2.25rem;
+  font-weight: 500;
+  color: var(--foreground);
+  margin-bottom: 2.5rem;
+}
+
+.sectionHeading {
+  font-family: var(--font-playfair), var(--font-lora), serif;
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: var(--foreground);
+  margin-bottom: 2rem;
+}
+
+/* ==============================
+   Placeholder Image Utilities
+   ============================== */
+
+.placeholderImage {
+  width: 100%;
+  height: 100%;
+  min-height: 140px;
+  background-color: #d4d0c8;
+  border-radius: 6px;
+}
+
+.placeholderImageTall {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: #d4d0c8;
+  border-radius: 6px 6px 0 0;
+}
+
+.placeholderImageFill {
+  width: 100%;
+  height: 100%;
+  background-color: #d4d0c8;
+  border-radius: 4px;
+}
+
+/* ==============================
+   SECTION 1: Upcoming Events
+   ============================== */
+
+.upcomingSection {
+  width: 100%;
+}
+
+.upcomingList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.upcomingRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.upcomingRow:first-child {
+  padding-top: 0;
+}
+
+.upcomingLeft {
+  display: flex;
+  gap: 1.5rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.dateBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 52px;
+  padding-top: 2px;
+}
+
+.dateDay {
+  font-family: var(--font-playfair), var(--font-lora), serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--foreground);
+}
+
+.dateMonth {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  margin-top: 2px;
+}
+
+.upcomingInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 440px;
+}
+
+.upcomingTitle {
+  font-family: var(--font-playfair), var(--font-lora), serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--foreground);
+  line-height: 1.35;
+}
+
+.upcomingDesc {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.joinBtn {
+  margin-top: 0.5rem;
+  align-self: flex-start;
+  padding: 0.5rem 1.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--accent);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.joinBtn:hover {
+  opacity: 0.85;
+}
+
+.upcomingImageWrap {
+  flex-shrink: 0;
+  width: 260px;
+  height: 160px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* ==============================
+   SECTION 2: Previous Events
+   ============================== */
+
+.previousSection {
+  width: 100%;
+}
+
+.previousGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.previousCard {
+  background-color: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.previousCard:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.previousImageWrap {
+  width: 100%;
+}
+
+.previousCardBody {
+  padding: 0.85rem 1rem 1rem;
+}
+
+.previousCardTitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 0.25rem;
+  line-height: 1.35;
+}
+
+.previousCardDate {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* ==============================
+   SECTION 3: Event Gallery
+   ============================== */
+
+.gallerySection {
+  width: 100%;
+}
+
+.galleryLayout {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+}
+
+.galleryText {
+  flex: 0 0 320px;
+}
+
+.galleryDesc {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.readMoreLink {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--foreground);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.readMoreLink:hover {
+  opacity: 0.7;
+}
+
+.galleryGrid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 130px;
+  gap: 0.75rem;
+}
+
+.galleryItem {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.galleryItemLarge {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* ==============================
+   SECTION 4: Meet-and-Greet
+   ============================== */
+
+.meetGreetSection {
+  width: 100%;
+}
+
+.meetGreetDesc {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--muted);
+  max-width: 700px;
+  margin-bottom: 2rem;
+}
+
+.meetGreetFormContainer {
+  background-color: var(--dark-bg);
+  border-radius: 8px;
+  padding: 2rem 2.5rem;
+  color: #ffffff;
+}
+
+.meetGreetFormTitle {
+  font-family: var(--font-playfair), var(--font-lora), serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.meetGreetFields {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.fieldGroup {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.fieldLabel {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #b0b0b3;
+}
+
+.fieldInput {
+  padding: 0.65rem 0.85rem;
+  font-size: 0.85rem;
+  background-color: var(--dark-card);
+  border: 1px solid #555559;
+  border-radius: 4px;
+  color: #ffffff;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.fieldInput::placeholder {
+  color: #77777a;
+}
+
+.fieldInput:focus {
+  border-color: #a0a0a4;
+}
+
+.submitBtn {
+  padding: 0.6rem 2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--foreground);
+  background-color: #f5f1e8;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.submitBtn:hover {
+  opacity: 0.85;
+}
+
+/* ==============================
+   SECTION 5: Store Location
+   ============================== */
+
+.storeSection {
+  width: 100%;
+}
+
+.storeSearchRow {
+  margin-bottom: 1.5rem;
+}
+
+.storeSearchInput {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.65rem 1rem;
+  font-size: 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background-color: transparent;
+  color: var(--foreground);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.storeSearchInput::placeholder {
+  color: var(--muted);
+}
+
+.storeSearchInput:focus {
+  border-color: #999;
+}
+
+.storeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.storeCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background-color: transparent;
+  transition: box-shadow 0.2s ease;
+}
+
+.storeCard:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.storeIcon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dark-bg);
+  color: #ffffff;
+  border-radius: 50%;
+}
+
+.storeInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.storeName {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.storeAddress {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.storePhone {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.15rem;
+}
+
+/* ==============================
+   Responsive Breakpoints
+   ============================== */
+
+@media (max-width: 1024px) {
+  .previousGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .galleryLayout {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .galleryText {
+    flex: none;
+    max-width: 100%;
+  }
+
+  .upcomingImageWrap {
+    width: 200px;
+    height: 130px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 2rem 1rem 4rem;
+    gap: 3.5rem;
+  }
+
+  .sectionHeadingLarge {
+    font-size: 1.75rem;
+  }
+
+  .sectionHeading {
+    font-size: 1.4rem;
+  }
+
+  .upcomingRow {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .upcomingImageWrap {
+    width: 100%;
+    height: 180px;
+  }
+
+  .previousGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .galleryGrid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 110px;
+  }
+
+  .galleryItemLarge {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  .meetGreetFields {
+    flex-direction: column;
+  }
+
+  .storeGrid {
+    grid-template-columns: 1fr;
+  }
+}
