@@ -22,6 +22,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .navbarSvg {
@@ -31,31 +32,18 @@
   display: block;
 }
 
-.navLinks {
-  display: flex;
-  justify-content: center;
-  gap: 2.5rem;
-  padding: 0.75rem 0 0;
-  width: 100%;
+.navOverlayLink {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background-color: transparent;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.2s ease;
+  border-radius: 4px;
 }
 
-.navLink {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: #7a7a7d;
-  text-decoration: none;
-  letter-spacing: 0.02em;
-  transition: color 0.2s ease;
-  padding-bottom: 4px;
-  border-bottom: 1.5px solid transparent;
-}
-
-.navLink:hover {
-  color: #313134;
-}
-
-.navLinkActive {
-  color: #820011;
-  font-weight: 500;
+.navOverlayLink:hover {
+  background-color: rgba(130, 0, 17, 0.05); /* Very subtle burgundy highlight on hover */
 }
 

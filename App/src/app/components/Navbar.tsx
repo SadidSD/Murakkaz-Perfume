@@ -2,22 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import styles from "./Navbar.module.css";
 
-const navLinks = [
-  { label: "Our Story", href: "/" },
-  { label: "Shop", href: "/" },
-  { label: "Event", href: "/events" },
-  { label: "Library", href: "/" },
-  { label: "Compare", href: "/compare" },
-  { label: "Finder", href: "/" },
-  { label: "Vlog", href: "/" },
-];
-
 export default function Navbar() {
-  const pathname = usePathname();
-
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
@@ -30,19 +17,20 @@ export default function Navbar() {
             priority
             className={styles.navbarSvg}
           />
-        </div>
-        <div className={styles.navLinks}>
-          {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className={`${styles.navLink} ${
-                pathname === link.href ? styles.navLinkActive : ""
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+
+          {/* Absolute Clickable Transparent Overlay Links */}
+          <Link href="/" className={styles.navOverlayLink} style={{ left: "21.2%", width: "6.5%" }} title="Our Story" />
+          <Link href="/" className={styles.navOverlayLink} style={{ left: "29.3%", width: "4%" }} title="Shop" />
+          <Link href="/events" className={styles.navOverlayLink} style={{ left: "34.4%", width: "4.5%" }} title="Event" />
+          <Link href="/" className={styles.navOverlayLink} style={{ left: "40%", width: "6%" }} title="Library" />
+          <Link href="/compare" className={styles.navOverlayLink} style={{ left: "48.3%", width: "6%" }} title="Compare" />
+          <Link href="/" className={styles.navOverlayLink} style={{ left: "55.6%", width: "5%" }} title="Finder" />
+          <Link href="/" className={styles.navOverlayLink} style={{ left: "62%", width: "4%" }} title="Vlog" />
+
+          {/* Icon Overlays */}
+          <Link href="/" className={styles.navOverlayLink} style={{ left: "86.7%", width: "2.5%" }} title="Wishlist" />
+          <Link href="/" className={styles.navOverlayLink} style={{ left: "89.7%", width: "2.5%" }} title="Cart" />
+          <Link href="/" className={styles.navOverlayLink} style={{ left: "92.7%", width: "2.5%" }} title="Profile" />
         </div>
       </nav>
     </header>
