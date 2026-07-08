@@ -159,15 +159,17 @@ export default function JadeSerenityProductPage() {
 
   return (
     <div className={styles.pageBackground}>
-      {/* Toast Alert Box */}
-      {toastMessage && (
-        <div className={styles.toast}>
-          <div className={styles.toastContent}>
-            <span className={styles.toastCheck}>✓</span>
-            <span>{toastMessage}</span>
+      {/* Toast Alert Box Wrapper (stable parent node prevents removeChild hydration/unmount crashes) */}
+      <div className={styles.toastWrapper}>
+        {toastMessage && (
+          <div className={styles.toast}>
+            <div className={styles.toastContent}>
+              <span className={styles.toastCheck}>✓</span>
+              <span>{toastMessage}</span>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
       <div className={styles.mainContainer}>
         {/* Breadcrumbs */}
@@ -436,217 +438,220 @@ export default function JadeSerenityProductPage() {
             </button>
           </div>
 
-          {activeTab === "performance" ? (
-            <div className={styles.performanceGrid}>
-              {/* Card 1: Main Accords */}
-              <div className={styles.performanceCard}>
-                <h3 className={styles.cardTitle}>Main Accords</h3>
-                <div className={styles.barGroup}>
-                  <div className={styles.barLabelRow}>
-                    <span className={styles.accordLabel}>
-                      <svg
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="#a28c73"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className={styles.accordIcon}
-                      >
-                        <path d="M3 10c0-3.3 4-6 9-6s9 2.7 9 6-4 6-9 6-9-2.7-9-6z" />
-                        <path d="M3 10v6c0 3.3 4-6 9 6s9-2.7 9-6v-6" />
-                        <path d="M12 7c-2 0-3.5 1-3.5 2.5S10 12 12 12s3.5-1 3.5-2.5S14 7 12 7z" />
-                      </svg>
-                      Woody
-                    </span>
-                    <span>100%</span>
+          {/* Stable Tab Content Wrapper (prevents unmount/hydration removeChild null crash) */}
+          <div className={styles.tabContentWrapper}>
+            {activeTab === "performance" && (
+              <div className={styles.performanceGrid}>
+                {/* Card 1: Main Accords */}
+                <div className={styles.performanceCard}>
+                  <h3 className={styles.cardTitle}>Main Accords</h3>
+                  <div className={styles.barGroup}>
+                    <div className={styles.barLabelRow}>
+                      <span className={styles.accordLabel}>
+                        <svg
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="#a28c73"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className={styles.accordIcon}
+                        >
+                          <path d="M3 10c0-3.3 4-6 9-6s9 2.7 9 6-4 6-9 6-9-2.7-9-6z" />
+                          <path d="M3 10v6c0 3.3 4-6 9 6s9-2.7 9-6v-6" />
+                          <path d="M12 7c-2 0-3.5 1-3.5 2.5S10 12 12 12s3.5-1 3.5-2.5S14 7 12 7z" />
+                        </svg>
+                        Woody
+                      </span>
+                      <span>100%</span>
+                    </div>
+                    <div className={styles.barOuter}>
+                      <div
+                        className={styles.barInner}
+                        style={{ width: "100%", backgroundColor: "#a28c73" }}
+                      ></div>
+                    </div>
                   </div>
-                  <div className={styles.barOuter}>
-                    <div
-                      className={styles.barInner}
-                      style={{ width: "100%", backgroundColor: "#a28c73" }}
-                    ></div>
+
+                  <div className={styles.barGroup}>
+                    <div className={styles.barLabelRow}>
+                      <span className={styles.accordLabel}>
+                        <svg
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="#e2cc9e"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className={styles.accordIcon}
+                        >
+                          <path d="M12 12c2.5-4 5.5-5 7-3s0 5-3 7L12 12z" />
+                          <path d="M12 12c-2.5-4-5.5-5-7-3s0 5 3 7l4-4z" />
+                          <path d="M12 12c4 2.5 5 5.5 3 7s-5 0-7-3l4-4z" />
+                          <path d="M12 12c-4 2.5-5 5.5-3 7s5 0 7-3l-4-4z" />
+                          <circle cx="12" cy="12" r="2" fill="#e2cc9e" />
+                        </svg>
+                        Vanilla
+                      </span>
+                      <span>75%</span>
+                    </div>
+                    <div className={styles.barOuter}>
+                      <div
+                        className={styles.barInner}
+                        style={{ width: "75%", backgroundColor: "#e2cc9e" }}
+                      ></div>
+                    </div>
                   </div>
+
+                  <div className={styles.barGroup}>
+                    <div className={styles.barLabelRow}>
+                      <span className={styles.accordLabel}>
+                        <svg
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="#b9cad7"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className={styles.accordIcon}
+                        >
+                          <path d="M12 2C12 2 6 9 6 14C6 17.3 8.7 20 12 20C15.3 20 18 17.3 18 14C18 9 12 2 12 2Z" />
+                          <path d="M14 12c1 1 1 2 0 3" />
+                        </svg>
+                        Balsamic
+                      </span>
+                      <span>60%</span>
+                    </div>
+                    <div className={styles.barOuter}>
+                      <div
+                        className={styles.barInner}
+                        style={{ width: "60%", backgroundColor: "#b9cad7" }}
+                      ></div>
+                    </div>
+                  </div>
+
+                  <div className={styles.barGroup}>
+                    <div className={styles.barLabelRow}>
+                      <span className={styles.accordLabel}>
+                        <svg
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="#e89f65"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className={styles.accordIcon}
+                        >
+                          <path d="M4 18L18 4" />
+                          <path d="M8 20L20 8" />
+                          <path d="M6 15c-1-1-1.5-2.5-1-3.5s2-.5 3 .5l1 1" />
+                          <path d="M10 19c-1-1-1.5-2.5-1-3.5s2-.5 3 .5l1 1" />
+                        </svg>
+                        Warm Spicy
+                      </span>
+                      <span>40%</span>
+                    </div>
+                    <div className={styles.barOuter}>
+                      <div
+                        className={styles.barInner}
+                        style={{ width: "40%", backgroundColor: "#e89f65" }}
+                      ></div>
+                    </div>
+                  </div>
+
+                  <div className={styles.sourceText}>Source: M</div>
                 </div>
 
-                <div className={styles.barGroup}>
-                  <div className={styles.barLabelRow}>
-                    <span className={styles.accordLabel}>
-                      <svg
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="#e2cc9e"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className={styles.accordIcon}
-                      >
-                        <path d="M12 12c2.5-4 5.5-5 7-3s0 5-3 7L12 12z" />
-                        <path d="M12 12c-2.5-4-5.5-5-7-3s0 5 3 7l4-4z" />
-                        <path d="M12 12c4 2.5 5 5.5 3 7s-5 0-7-3l4-4z" />
-                        <path d="M12 12c-4 2.5-5 5.5-3 7s5 0 7-3l-4-4z" />
-                        <circle cx="12" cy="12" r="2" fill="#e2cc9e" />
-                      </svg>
-                      Vanilla
-                    </span>
-                    <span>75%</span>
+                {/* Card 2: Best For */}
+                <div className={styles.performanceCard}>
+                  <h3 className={styles.cardTitle}>Best For</h3>
+                  <div className={styles.barGroup}>
+                    <div className={styles.barLabelRow}>
+                      <span>Winter & Autumn</span>
+                      <span>85%</span>
+                    </div>
+                    <div className={styles.barOuter}>
+                      <div
+                        className={styles.barInner}
+                        style={{ width: "85%", backgroundColor: "#313134" }}
+                      ></div>
+                    </div>
                   </div>
-                  <div className={styles.barOuter}>
-                    <div
-                      className={styles.barInner}
-                      style={{ width: "75%", backgroundColor: "#e2cc9e" }}
-                    ></div>
+
+                  <div className={styles.barGroup}>
+                    <div className={styles.barLabelRow}>
+                      <span>Summer & Spring</span>
+                      <span>40%</span>
+                    </div>
+                    <div className={styles.barOuter}>
+                      <div
+                        className={styles.barInner}
+                        style={{ width: "40%", backgroundColor: "#313134" }}
+                      ></div>
+                    </div>
                   </div>
+
+                  <div className={styles.barGroup}>
+                    <div className={styles.barLabelRow}>
+                      <span>Daytime Wear</span>
+                      <span>50%</span>
+                    </div>
+                    <div className={styles.barOuter}>
+                      <div
+                        className={styles.barInner}
+                        style={{ width: "50%", backgroundColor: "#313134" }}
+                      ></div>
+                    </div>
+                  </div>
+
+                  <div className={styles.barGroup}>
+                    <div className={styles.barLabelRow}>
+                      <span>Nightly Occasions</span>
+                      <span>65%</span>
+                    </div>
+                    <div className={styles.barOuter}>
+                      <div
+                        className={styles.barInner}
+                        style={{ width: "65%", backgroundColor: "#313134" }}
+                      ></div>
+                    </div>
+                  </div>
+
+                  <div className={styles.sourceText}>Source: M</div>
                 </div>
 
-                <div className={styles.barGroup}>
-                  <div className={styles.barLabelRow}>
-                    <span className={styles.accordLabel}>
-                      <svg
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="#b9cad7"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className={styles.accordIcon}
-                      >
-                        <path d="M12 2C12 2 6 9 6 14C6 17.3 8.7 20 12 20C15.3 20 18 17.3 18 14C18 9 12 2 12 2Z" />
-                        <path d="M14 12c1 1 1 2 0 3" />
-                      </svg>
-                      Balsamic
-                    </span>
-                    <span>60%</span>
-                  </div>
-                  <div className={styles.barOuter}>
-                    <div
-                      className={styles.barInner}
-                      style={{ width: "60%", backgroundColor: "#b9cad7" }}
-                    ></div>
+                {/* Card 3: Our Take */}
+                <div className={styles.performanceCard}>
+                  <h3 className={styles.cardTitle}>Our Take</h3>
+                  <p className={styles.ourTakeText}>
+                    "It's a dupe that performs with beast-mode."
+                  </p>
+                  <div className={styles.compareBtnContainer}>
+                    <button
+                      onClick={() => triggerToast("Loading duplicate fragrance comparison overlay...")}
+                      className={styles.compareBtn}
+                    >
+                      Compare Now <span className={styles.btnArrow}>→</span>
+                    </button>
                   </div>
                 </div>
-
-                <div className={styles.barGroup}>
-                  <div className={styles.barLabelRow}>
-                    <span className={styles.accordLabel}>
-                      <svg
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="#e89f65"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className={styles.accordIcon}
-                      >
-                        <path d="M4 18L18 4" />
-                        <path d="M8 20L20 8" />
-                        <path d="M6 15c-1-1-1.5-2.5-1-3.5s2-.5 3 .5l1 1" />
-                        <path d="M10 19c-1-1-1.5-2.5-1-3.5s2-.5 3 .5l1 1" />
-                      </svg>
-                      Warm Spicy
-                    </span>
-                    <span>40%</span>
-                  </div>
-                  <div className={styles.barOuter}>
-                    <div
-                      className={styles.barInner}
-                      style={{ width: "40%", backgroundColor: "#e89f65" }}
-                    ></div>
-                  </div>
-                </div>
-
-                <div className={styles.sourceText}>Source: M</div>
               </div>
+            )}
 
-              {/* Card 2: Best For */}
-              <div className={styles.performanceCard}>
-                <h3 className={styles.cardTitle}>Best For</h3>
-                <div className={styles.barGroup}>
-                  <div className={styles.barLabelRow}>
-                    <span>Winter & Autumn</span>
-                    <span>85%</span>
-                  </div>
-                  <div className={styles.barOuter}>
-                    <div
-                      className={styles.barInner}
-                      style={{ width: "85%", backgroundColor: "#313134" }}
-                    ></div>
-                  </div>
-                </div>
-
-                <div className={styles.barGroup}>
-                  <div className={styles.barLabelRow}>
-                    <span>Summer & Spring</span>
-                    <span>40%</span>
-                  </div>
-                  <div className={styles.barOuter}>
-                    <div
-                      className={styles.barInner}
-                      style={{ width: "40%", backgroundColor: "#313134" }}
-                    ></div>
-                  </div>
-                </div>
-
-                <div className={styles.barGroup}>
-                  <div className={styles.barLabelRow}>
-                    <span>Daytime Wear</span>
-                    <span>50%</span>
-                  </div>
-                  <div className={styles.barOuter}>
-                    <div
-                      className={styles.barInner}
-                      style={{ width: "50%", backgroundColor: "#313134" }}
-                    ></div>
-                  </div>
-                </div>
-
-                <div className={styles.barGroup}>
-                  <div className={styles.barLabelRow}>
-                    <span>Nightly Occasions</span>
-                    <span>65%</span>
-                  </div>
-                  <div className={styles.barOuter}>
-                    <div
-                      className={styles.barInner}
-                      style={{ width: "65%", backgroundColor: "#313134" }}
-                    ></div>
-                  </div>
-                </div>
-
-                <div className={styles.sourceText}>Source: M</div>
+            {activeTab === "reviews" && (
+              <div className={styles.reviewsPlaceholder}>
+                <p>No reviews yet for this product.</p>
               </div>
-
-              {/* Card 3: Our Take */}
-              <div className={styles.performanceCard}>
-                <h3 className={styles.cardTitle}>Our Take</h3>
-                <p className={styles.ourTakeText}>
-                  "It's a dupe that performs with beast-mode."
-                </p>
-                <div className={styles.compareBtnContainer}>
-                  <button
-                    onClick={() => triggerToast("Loading duplicate fragrance comparison overlay...")}
-                    className={styles.compareBtn}
-                  >
-                    Compare Now <span className={styles.btnArrow}>→</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          ) : null}
-
-          {activeTab === "reviews" ? (
-            <div className={styles.reviewsPlaceholder}>
-              <p>No reviews yet for this product.</p>
-            </div>
-          ) : null}
+            )}
+          </div>
         </section>
 
         {/* Founder Review Section */}
