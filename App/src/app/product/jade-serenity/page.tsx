@@ -35,6 +35,31 @@ export default function JadeSerenityProductPage() {
     "/images/products/velvet_oud.png",
   ];
 
+  // Reusable fragrance notes data list
+  const topNotes = [
+    { name: "Osmanthus", image: "osmanthus.png" },
+    { name: "Peach", image: "peach.png" },
+    { name: "Neroli", image: "neroli.png" },
+    { name: "Bergamot", image: "bergamot.png" },
+    { name: "Mandarin", image: "mandarin.png" },
+    { name: "Cinnamon", image: "cinnamon.png" },
+  ];
+
+  const middleNotes = [
+    { name: "Indian Tuberose", image: "indian_tuberose.png" },
+    { name: "Jasmine", image: "jasmine.png" },
+    { name: "Narcissus", image: "narcissus.png" },
+    { name: "May Rose", image: "may_rose.png" },
+  ];
+
+  const baseNotes = [
+    { name: "Amber", image: "amber.png" },
+    { name: "Cedar", image: "cedar.png" },
+    { name: "Sandalwood", image: "sandalwood.png" },
+    { name: "Patchouli", image: "patchouli.png" },
+    { name: "Vetiver", image: "vetiver.png" },
+  ];
+
   // Dynamic countdown timer loop
   useEffect(() => {
     setIsMounted(true);
@@ -317,6 +342,75 @@ export default function JadeSerenityProductPage() {
                   </p>
                 </div>
               )}
+            </div>
+          </div>
+        </section>
+
+        {/* Dedicated Fragrance Notes Section */}
+        <section className={styles.notesSection}>
+          <h2 className={styles.notesSectionTitle}>Fragrance Notes</h2>
+          <div className={styles.notesContainer}>
+            {/* Top Notes */}
+            <div className={styles.notesGroup}>
+              <h3 className={styles.notesGroupTitle}>Top Notes</h3>
+              <div className={styles.notesGrid}>
+                {topNotes.map((note) => (
+                  <div key={note.name} className={styles.noteItem}>
+                    <div className={styles.noteImageWrapper}>
+                      <Image
+                        src={`/images/notes/${note.image}`}
+                        alt={note.name}
+                        width={80}
+                        height={80}
+                        className={styles.noteImage}
+                      />
+                    </div>
+                    <span className={styles.noteName}>{note.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Middle Notes */}
+            <div className={styles.notesGroup}>
+              <h3 className={styles.notesGroupTitle}>Middle Notes</h3>
+              <div className={styles.notesGrid}>
+                {middleNotes.map((note) => (
+                  <div key={note.name} className={styles.noteItem}>
+                    <div className={styles.noteImageWrapper}>
+                      <Image
+                        src={`/images/notes/${note.image}`}
+                        alt={note.name}
+                        width={80}
+                        height={80}
+                        className={styles.noteImage}
+                      />
+                    </div>
+                    <span className={styles.noteName}>{note.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Base Notes */}
+            <div className={styles.notesGroup}>
+              <h3 className={styles.notesGroupTitle}>Base Notes</h3>
+              <div className={styles.notesGrid}>
+                {baseNotes.map((note) => (
+                  <div key={note.name} className={styles.noteItem}>
+                    <div className={styles.noteImageWrapper}>
+                      <Image
+                        src={`/images/notes/${note.image}`}
+                        alt={note.name}
+                        width={80}
+                        height={80}
+                        className={styles.noteImage}
+                      />
+                    </div>
+                    <span className={styles.noteName}>{note.name}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
