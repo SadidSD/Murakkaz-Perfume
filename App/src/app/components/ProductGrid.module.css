@@ -30,3 +30,17 @@
     justify-items: center;
   }
 }
+
+.noResults {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  width: 100%;
+  font-family: var(--font-serif-text), Georgia, serif;
+  font-size: 1.15rem;
+  color: #767677;
+  text-align: center;
+  border: 1px dashed rgba(118, 118, 119, 0.25);
+  border-radius: 19.5px;
+}

@@ -10,7 +10,19 @@ interface FilterCategory {
   type?: "checkbox" | "slider";
 }
 
-export default function FilterSidebar() {
+interface FilterSidebarProps {
+  selectedFilters: Record<string, string[]>;
+  onCheckboxChange: (categoryId: string, option: string) => void;
+  maxPrice: number;
+  onPriceChange: (price: number) => void;
+}
+
+export default function FilterSidebar({
+  selectedFilters,
+  onCheckboxChange,
+  maxPrice,
+  onPriceChange,
+}: FilterSidebarProps) {
   const [expanded, setExpanded] = useState<Record<string, boolean>>({
     family: false,
     gender: false,
@@ -18,15 +30,6 @@ export default function FilterSidebar() {
     meter: false,
     price: false,
   });
-
-  const [selectedFilters, setSelectedFilters] = useState<Record<string, string[]>>({
-    family: [],
-    gender: [],
-    occasion: [],
-    meter: [],
-  });
-
-  const [maxPrice, setMaxPrice] = useState<number>(2500);
 
   const categories: FilterCategory[] = [
     {
@@ -65,20 +68,6 @@ export default function FilterSidebar() {
       ...prev,
       [id]: !prev[id],
     }));
-  };
-
-  const handleCheckboxChange = (categoryId: string, option: string) => {
-    setSelectedFilters((prev) => {
-      const currentSelected = prev[categoryId] || [];
-      const updated = currentSelected.includes(option)
-        ? currentSelected.filter((item) => item !== option)
-        : [...currentSelected, option];
-
-      return {
-        ...prev,
-        [categoryId]: updated,
-      };
-    });
   };
 
   return (
@@ -121,7 +110,7 @@ export default function FilterSidebar() {
                           max="3000"
                           step="50"
                           value={maxPrice}
-                          onChange={(e) => setMaxPrice(Number(e.target.value))}
+                          onChange={(e) => onPriceChange(Number(e.target.value))}
                           className={styles.rangeInput}
                         />
                         <div className={styles.sliderValues}>
@@ -139,7 +128,7 @@ export default function FilterSidebar() {
                               type="checkbox"
                               className={styles.checkboxInput}
                               checked={isChecked}
-                              onChange={() => handleCheckboxChange(category.id, option)}
+                              onChange={() => onCheckboxChange(category.id, option)}
                             />
                             <span className={styles.optionText}>{option}</span>
                           </label>
