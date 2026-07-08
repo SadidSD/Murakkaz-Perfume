@@ -59,11 +59,53 @@ export default function RecommendationSlider() {
       volume: "100ml",
       image: "/images/products/hellenist.png",
     },
+    {
+      id: "rec-5",
+      name: "Amber Gold",
+      description: "Inspired by Xerjoff Erba Pura",
+      rating: 4.9,
+      reviews: 195,
+      price: "2,120tk",
+      volume: "100ml",
+      image: "/images/products/amber_gold.png",
+    },
+    {
+      id: "rec-6",
+      name: "Velvet Oud",
+      description: "Inspired by Tom Ford Oud Wood",
+      rating: 4.8,
+      reviews: 210,
+      price: "2,420tk",
+      volume: "100ml",
+      image: "/images/products/velvet_oud.png",
+    },
+    {
+      id: "rec-7",
+      name: "Rouge 540",
+      description: "Inspired by Baccarat Rouge 540",
+      rating: 4.9,
+      reviews: 420,
+      price: "2,820tk",
+      volume: "100ml",
+      image: "/images/products/rouge_540.png",
+    },
+    {
+      id: "rec-8",
+      name: "Silver Mountain",
+      description: "Inspired by Creed Silver Mountain",
+      rating: 4.7,
+      reviews: 135,
+      price: "1,820tk",
+      volume: "100ml",
+      image: "/images/products/silver_mountain.png",
+    },
   ];
 
   const scroll = (direction: "left" | "right") => {
     if (sliderRef.current) {
-      const scrollAmount = 300; // Approx card width + gap
+      const cardWidth = 280;
+      const gap = 24; // 1.5rem
+      const scrollAmount = cardWidth + gap;
       sliderRef.current.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
         behavior: "smooth",
