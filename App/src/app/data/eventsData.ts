@@ -63,6 +63,72 @@ export const upcomingEvents: UpcomingEvent[] = [
       "Murakkaz is taking over ICCB! We are architecting a premium fragrance experience at Pavilion 3, Stall B4. Join us to explore our highest-performing evening scents and enjoy an exclusive meet-and-greet window with the Founder every single evening. Don\u2019t miss out!",
     image: "sadid.png"
   },
+  {
+    day: "18",
+    month: "July",
+    title: "We Are Going To DU Again",
+    location: "At DU TSC",
+    daysLeft: "19 days left",
+    time: "From 8.00\nTo 17.00",
+    description:
+      "TSC is always a festive ground! We are setting up our pop-up near the Raju Sculpture to meet fragrance collectors at Dhaka University and run an exclusive scent profiling workshop.",
+    image: "sadid.png"
+  },
+  {
+    day: "22",
+    month: "July",
+    title: "We Are Going To RU Again",
+    location: "At Rajshahi University",
+    daysLeft: "23 days left",
+    time: "From 8.00\nTo 17.00",
+    description:
+      "RU collectors, we haven\u2019t forgotten you! Our mobile scent cart will be parked at the Paris Road for three days to showcase our premium silhouettes and give away free tester vials.",
+    image: "sadid.png"
+  },
+  {
+    day: "30",
+    month: "July",
+    title: "Fragrance & Lifestyle Festival",
+    location: "At Aloki Dhaka",
+    daysLeft: "31 days left",
+    time: "From 8.00\nTo 17.00",
+    description:
+      "Join us at Aloki for a luxury lifestyle and fragrance festival. Expect exclusive discounts, scent profiling sessions, and custom formulations created live on the spot.",
+    image: "sadid.png"
+  },
+  {
+    day: "02",
+    month: "August",
+    title: "We Are Going To MIST Again",
+    location: "At MIST Plaza",
+    daysLeft: "34 days left",
+    time: "From 8.00\nTo 17.00",
+    description:
+      "Bringing our crisp and fresh perfumes to MIST campus in Mirpur. Meet the founders, explore scent chemistry, and try our newly released heat-resistant formulations.",
+    image: "sadid.png"
+  },
+  {
+    day: "08",
+    month: "August",
+    title: "We Are Going To IUT Again",
+    location: "At Gazipur",
+    daysLeft: "40 days left",
+    time: "From 8.00\nTo 17.00",
+    description:
+      "Back by popular demand! We are visiting the IUT campus in Gazipur to showcase our long-lasting evening lineup and beast-mode office scents to tech enthusiasts.",
+    image: "sadid.png"
+  },
+  {
+    day: "15",
+    month: "August",
+    title: "Scent Con Bangladesh 2026",
+    location: "At Radisson Blu Water Garden",
+    daysLeft: "47 days left",
+    time: "From 8.00\nTo 17.00",
+    description:
+      "The premier scent conference of Bangladesh. Murakkaz will host an exclusive masterclass on perfume design, and launch three limited-edition extraits de parfum.",
+    image: "sadid.png"
+  }
 ];
 
 export const previousEvents: PreviousEvent[] = [

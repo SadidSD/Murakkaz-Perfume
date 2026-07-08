@@ -14,6 +14,14 @@ export default function EventsPage() {
   const [meetGreetName, setMeetGreetName] = useState("");
   const [meetGreetEmail, setMeetGreetEmail] = useState("");
   const [locationSearch, setLocationSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const itemsPerPage = 3;
+  const totalPages = Math.ceil(upcomingEvents.length / itemsPerPage);
+  const paginatedEvents = upcomingEvents.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const filteredLocations = storeLocations.filter(
     (loc) =>
@@ -33,7 +41,7 @@ export default function EventsPage() {
           </h1>
 
           <div className={styles.upcomingList}>
-            {upcomingEvents.map((event, idx) => (
+            {paginatedEvents.map((event, idx) => (
               <div key={idx} className={styles.upcomingRow}>
                 {/* Col 1: Date */}
                 <div className={styles.dateBlock}>
@@ -90,11 +98,33 @@ export default function EventsPage() {
 
           {/* Pagination */}
           <div className={styles.pagination}>
-            <button className={styles.paginationArrow}>&lt;</button>
-            <button className={`${styles.paginationNum} ${styles.paginationActive}`}>1</button>
-            <button className={styles.paginationNum}>2</button>
-            <button className={styles.paginationNum}>3</button>
-            <button className={styles.paginationArrow}>&gt;</button>
+            <button
+              onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
+              className={styles.paginationArrow}
+              disabled={currentPage === 1}
+              style={{ opacity: currentPage === 1 ? 0.5 : 1, cursor: currentPage === 1 ? "not-allowed" : "pointer" }}
+            >
+              &lt;
+            </button>
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+              <button
+                key={pageNum}
+                onClick={() => setCurrentPage(pageNum)}
+                className={`${styles.paginationNum} ${
+                  currentPage === pageNum ? styles.paginationActive : ""
+                }`}
+              >
+                {pageNum}
+              </button>
+            ))}
+            <button
+              onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
+              className={styles.paginationArrow}
+              disabled={currentPage === totalPages}
+              style={{ opacity: currentPage === totalPages ? 0.5 : 1, cursor: currentPage === totalPages ? "not-allowed" : "pointer" }}
+            >
+              &gt;
+            </button>
           </div>
         </section>
 
