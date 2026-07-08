@@ -101,6 +101,46 @@ const initialFavorites: WishlistProduct[] = [
     ratingCount: 150,
     inWishlist: true,
   },
+  {
+    id: "fav-9",
+    name: "Coral Sea",
+    image: "/images/products/coral_sea.png",
+    inspiredBy: "inspired by Dior Sauvage",
+    price: "1,450tk",
+    rating: "4.0",
+    ratingCount: 95,
+    inWishlist: true,
+  },
+  {
+    id: "fav-10",
+    name: "Amber Gold",
+    image: "/images/products/magnetism.png",
+    inspiredBy: "inspired by Dior Sauvage",
+    price: "1,890tk",
+    rating: "4.5",
+    ratingCount: 120,
+    inWishlist: true,
+  },
+  {
+    id: "fav-11",
+    name: "Ocean Mist",
+    image: "/images/products/jade_serenity.png",
+    inspiredBy: "inspired by Dior Sauvage",
+    price: "1,350tk",
+    rating: "3.8",
+    ratingCount: 40,
+    inWishlist: true,
+  },
+  {
+    id: "fav-12",
+    name: "Night Bloom",
+    image: "/images/products/magnetism.png",
+    inspiredBy: "inspired by Dior Sauvage",
+    price: "2,100tk",
+    rating: "4.7",
+    ratingCount: 180,
+    inWishlist: true,
+  },
 ];
 
 const initialRelated: WishlistProduct[] = [
@@ -146,12 +186,54 @@ const initialRelated: WishlistProduct[] = [
     ratingCount: 80,
     inWishlist: false,
   },
+  {
+    id: "rel-5",
+    name: "Coral Sea",
+    image: "/images/products/coral_sea.png",
+    inspiredBy: "inspired by Dior Sauvage",
+    price: "1,450tk",
+    rating: "4.0",
+    ratingCount: 95,
+    inWishlist: false,
+  },
+  {
+    id: "rel-6",
+    name: "Amber Gold",
+    image: "/images/products/magnetism.png",
+    inspiredBy: "inspired by Dior Sauvage",
+    price: "1,890tk",
+    rating: "4.5",
+    ratingCount: 120,
+    inWishlist: false,
+  },
+  {
+    id: "rel-7",
+    name: "Ocean Mist",
+    image: "/images/products/jade_serenity.png",
+    inspiredBy: "inspired by Dior Sauvage",
+    price: "1,350tk",
+    rating: "3.8",
+    ratingCount: 40,
+    inWishlist: false,
+  },
+  {
+    id: "rel-8",
+    name: "Night Bloom",
+    image: "/images/products/magnetism.png",
+    inspiredBy: "inspired by Dior Sauvage",
+    price: "2,100tk",
+    rating: "4.7",
+    ratingCount: 180,
+    inWishlist: false,
+  },
 ];
 
 export default function WishlistPage() {
   const [favorites, setFavorites] = useState<WishlistProduct[]>(initialFavorites);
   const [related, setRelated] = useState<WishlistProduct[]>(initialRelated);
   const [searchQuery, setSearchQuery] = useState("");
+  const [favoritesLimit, setFavoritesLimit] = useState(8);
+  const [carouselIndex, setCarouselIndex] = useState(0);
 
   const toggleFavorite = (id: string, isRelated = false) => {
     if (isRelated) {
@@ -169,9 +251,28 @@ export default function WishlistPage() {
     }
   };
 
+  const handleToggleFavoritesLimit = () => {
+    if (favoritesLimit >= filteredFavorites.length) {
+      setFavoritesLimit(8);
+    } else {
+      setFavoritesLimit(prev => prev + 4);
+    }
+  };
+
+  const handlePrevCarousel = () => {
+    setCarouselIndex(prev => Math.max(prev - 1, 0));
+  };
+
+  const handleNextCarousel = () => {
+    // 4 items visible in viewport
+    setCarouselIndex(prev => Math.min(prev + 1, related.length - 4));
+  };
+
   const filteredFavorites = favorites.filter(item =>
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+  
+  const displayedFavorites = filteredFavorites.slice(0, favoritesLimit);
 
   return (
     <div className={styles.page}>
@@ -198,7 +299,7 @@ export default function WishlistPage() {
 
         {/* Favorite Grid */}
         <div className={styles.gridContainer}>
-          {filteredFavorites.map((item) => (
+          {displayedFavorites.map((item) => (
             <div key={item.id} className={styles.card}>
               <div className={styles.imageWrapper}>
                 <img src={item.image} alt={item.name} className={styles.productImg} />
@@ -246,79 +347,108 @@ export default function WishlistPage() {
         </div>
 
         {/* Show More */}
-        <div className={styles.showMoreRow}>
-          <button className={styles.showMoreBtn}>
-            Show More
-            <span className={styles.downArrow}>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg>
-            </span>
-          </button>
-        </div>
+        {filteredFavorites.length > 8 && (
+          <div className={styles.showMoreRow}>
+            <button className={styles.showMoreBtn} onClick={handleToggleFavoritesLimit}>
+              {favoritesLimit >= filteredFavorites.length ? "Show Less" : "Show More"}
+              <span 
+                className={styles.downArrow} 
+                style={{ 
+                  transform: favoritesLimit >= filteredFavorites.length ? 'rotate(180deg)' : 'none', 
+                  transition: 'transform 0.3s ease',
+                  display: 'flex',
+                  alignItems: 'center'
+                }}
+              >
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </span>
+            </button>
+          </div>
+        )}
 
         {/* Products Related To Your Liking */}
         <div className={styles.relatedSection}>
           <h2 className={styles.relatedTitle}>Products Related To Your Liking</h2>
           <div className={styles.carouselContainer}>
             {/* Left Nav */}
-            <button className={styles.carouselNavBtn} aria-label="Previous Related Products">
+            <button 
+              className={styles.carouselNavBtn} 
+              onClick={handlePrevCarousel}
+              disabled={carouselIndex === 0}
+              style={{ opacity: carouselIndex === 0 ? 0.3 : 1, cursor: carouselIndex === 0 ? 'default' : 'pointer' }}
+              aria-label="Previous Related Products"
+            >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="15 18 9 12 15 6"></polyline>
               </svg>
             </button>
 
-            {/* Carousel Grid */}
-            <div className={styles.relatedGrid}>
-              {related.map((item) => (
-                <div key={item.id} className={styles.card}>
-                  <div className={styles.imageWrapper}>
-                    <img src={item.image} alt={item.name} className={styles.productImg} />
-                  </div>
-                  <div className={styles.cardDetails}>
-                    <div className={styles.titleHeartRow}>
-                      <h3 className={styles.productName}>{item.name}</h3>
-                      <button
-                        className={styles.heartBtn}
-                        onClick={() => toggleFavorite(item.id, true)}
-                        title={item.inWishlist ? "Remove from wishlist" : "Add to wishlist"}
-                      >
-                        {item.inWishlist ? (
-                          <svg width="18" height="18" viewBox="0 0 24 24" fill="#820011" stroke="#820011" strokeWidth="1.5">
-                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                          </svg>
-                        ) : (
-                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7a7a7d" strokeWidth="1.5">
-                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                          </svg>
-                        )}
-                      </button>
-                    </div>
-                    <div className={styles.inspiredBy}>{item.inspiredBy}</div>
-                    <div className={styles.ratingPriceRow}>
-                      <div className={styles.ratingWrapper}>
-                        <span className={styles.starIcon}>★</span>
-                        <span className={styles.ratingValue}>{item.rating}</span>
-                        <span className={styles.ratingCount}>({item.ratingCount})</span>
+            {/* Carousel Viewport Container */}
+            <div className={styles.carouselViewport}>
+              <div 
+                className={styles.carouselTrack} 
+                style={{ "--carousel-index": carouselIndex } as React.CSSProperties}
+              >
+                {related.map((item) => (
+                  <div key={item.id} className={styles.carouselCard}>
+                    <div className={styles.card}>
+                      <div className={styles.imageWrapper}>
+                        <img src={item.image} alt={item.name} className={styles.productImg} />
                       </div>
-                      <div className={styles.priceContainer}>
-                        {item.originalPrice && (
-                          <span className={styles.originalPrice}>{item.originalPrice}</span>
-                        )}
-                        <span className={styles.price}>{item.price}</span>
+                      <div className={styles.cardDetails}>
+                        <div className={styles.titleHeartRow}>
+                          <h3 className={styles.productName}>{item.name}</h3>
+                          <button
+                            className={styles.heartBtn}
+                            onClick={() => toggleFavorite(item.id, true)}
+                            title={item.inWishlist ? "Remove from wishlist" : "Add to wishlist"}
+                          >
+                            {item.inWishlist ? (
+                              <svg width="18" height="18" viewBox="0 0 24 24" fill="#820011" stroke="#820011" strokeWidth="1.5">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                              </svg>
+                            ) : (
+                              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7a7a7d" strokeWidth="1.5">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                              </svg>
+                            )}
+                          </button>
+                        </div>
+                        <div className={styles.inspiredBy}>{item.inspiredBy}</div>
+                        <div className={styles.ratingPriceRow}>
+                          <div className={styles.ratingWrapper}>
+                            <span className={styles.starIcon}>★</span>
+                            <span className={styles.ratingValue}>{item.rating}</span>
+                            <span className={styles.ratingCount}>({item.ratingCount})</span>
+                          </div>
+                          <div className={styles.priceContainer}>
+                            {item.originalPrice && (
+                              <span className={styles.originalPrice}>{item.originalPrice}</span>
+                            )}
+                            <span className={styles.price}>{item.price}</span>
+                          </div>
+                        </div>
+                        <div className={styles.actionButtons}>
+                          <button className={styles.addBagBtn}>Add to Bag</button>
+                          <button className={styles.buyNowBtn}>Buy Now</button>
+                        </div>
                       </div>
                     </div>
-                    <div className={styles.actionButtons}>
-                      <button className={styles.addBagBtn}>Add to Bag</button>
-                      <button className={styles.buyNowBtn}>Buy Now</button>
-                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
 
             {/* Right Nav */}
-            <button className={styles.carouselNavBtn} aria-label="Next Related Products">
+            <button 
+              className={styles.carouselNavBtn} 
+              onClick={handleNextCarousel}
+              disabled={carouselIndex >= related.length - 4}
+              style={{ opacity: carouselIndex >= related.length - 4 ? 0.3 : 1, cursor: carouselIndex >= related.length - 4 ? 'default' : 'pointer' }}
+              aria-label="Next Related Products"
+            >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="9 18 15 12 9 6"></polyline>
               </svg>

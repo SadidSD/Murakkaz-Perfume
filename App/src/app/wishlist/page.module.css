@@ -328,11 +328,25 @@
   background-color: rgba(49, 49, 52, 0.05);
 }
 
-.relatedGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.75rem;
+.carouselViewport {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
   flex: 1;
+}
+
+.carouselTrack {
+  display: flex;
+  gap: 1.75rem;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+  transform: translateX(calc(-1 * var(--carousel-index) * (100% + 1.75rem) / 4));
+}
+
+.carouselCard {
+  flex: 0 0 calc((100% - 5.25rem) / 4);
+  max-width: calc((100% - 5.25rem) / 4);
+  box-sizing: border-box;
 }
 
 /* Footer styles */
@@ -451,8 +465,13 @@
 
 /* Responsive constraints */
 @media (max-width: 1024px) {
-  .gridContainer, .relatedGrid {
+  .gridContainer {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .carouselCard {
+    flex: 0 0 calc((100% - 1.75rem) / 2);
+    max-width: calc((100% - 1.75rem) / 2);
   }
 
   .footerContainer {
@@ -479,8 +498,13 @@
     font-size: 2rem;
   }
 
-  .gridContainer, .relatedGrid {
+  .gridContainer {
     grid-template-columns: 1fr;
+  }
+
+  .carouselCard {
+    flex: 0 0 100%;
+    max-width: 100%;
   }
 
   .headerRow {
