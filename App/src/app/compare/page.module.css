@@ -291,14 +291,15 @@
 }
 
 /* Comparison Table */
+/* Luxury Comparison Table */
 .tableContainer {
   width: 100%;
   max-width: 1249px;
-  margin: 1.5rem auto 0;
-  border: 1.5px solid #767677;
-  border-radius: 10px;
-  overflow: hidden;
-  background-color: #f5f1e8;
+  margin: 2rem auto 0;
+  border: 1px solid #e5e2da;
+  border-radius: 8px;
+  overflow: visible; /* Allows sticky table headers to render correctly */
+  background-color: #faf9f6;
 }
 
 .compareTable {
@@ -309,12 +310,13 @@
 }
 
 .compareTable td {
-  padding: 1.25rem 1.5rem;
-  font-size: 0.92rem;
-  color: var(--foreground);
-  border-right: 1.5px solid #767677;
-  border-bottom: 1.5px solid #767677;
+  padding: 1.5rem 2rem;
+  font-size: 0.9rem;
+  color: #2d2d2f;
+  border-right: 1px solid #e5e2da;
+  border-bottom: 1px solid #e5e2da;
   vertical-align: middle;
+  transition: background-color 0.25s ease;
 }
 
 .compareTable td:last-child {
@@ -325,20 +327,82 @@
   border-bottom: none;
 }
 
-.featureTitle {
-  font-weight: 500;
-  color: #555558;
-  background-color: rgba(0, 0, 0, 0.01);
-  width: 20%;
-  min-width: 180px;
-  text-align: left; /* Left align row headers */
+.compareTable tr:hover td {
+  background-color: rgba(245, 241, 232, 0.15); /* Soft premium hover glow */
 }
 
+/* Sticky Header Row */
+.stickyHeaderRow td {
+  position: sticky;
+  top: 80px; /* Sits cleanly below header */
+  z-index: 40;
+  background-color: #fbfaf8 !important;
+  border-bottom: 1.5px solid #d9c49e !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.featureTitle {
+  font-family: var(--font-playfair), var(--font-lora), serif;
+  font-size: 1.02rem;
+  font-weight: 400;
+  color: #8c8a82;
+  background-color: #fdfcfb;
+  width: 22%;
+  min-width: 190px;
+  text-align: left;
+}
+
+/* Recommended Perfume Highlight column */
+.recommendedColumn {
+  background-color: #faf7f0 !important; /* Soft warm ivory */
+  border-left: 1.2px solid #e1d3b7 !important;
+  border-right: 1.2px solid #e1d3b7 !important;
+}
+
+/* productName styling */
 .productNameCell {
   font-family: var(--font-playfair), var(--font-lora), serif;
   font-size: 1.45rem;
-  font-weight: 500;
-  color: var(--foreground);
+  font-weight: 400;
+  color: #2d2d2f;
+}
+
+.nameHeaderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.recommendedBadge {
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #a3906b; /* Muted gold */
+}
+
+/* Card Slot Badge */
+.cardRecommendedBadge {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #a3906b;
+  background-color: #faf7f0;
+  border: 1px solid #e1d3b7;
+  padding: 3px 12px;
+  border-radius: 100px;
+}
+
+.recommendedCard {
+  border: 1.2px solid #e1d3b7 !important;
+  background-color: #fdfcfb !important;
+  box-shadow: 0 8px 30px rgba(163, 144, 107, 0.04) !important;
 }
 
 .ratingWrapper {
@@ -346,19 +410,19 @@
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   color: #7a7a7d;
 }
 
 .starIcon {
-  color: #ffb800; /* Star icon yellow */
-  font-size: 1rem;
+  color: #a3906b; /* Gold star */
+  font-size: 0.95rem;
 }
 
 .accordsList {
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
+  gap: 0.5rem;
   width: 100%;
   max-width: 220px;
   margin: 0 auto;
@@ -367,20 +431,21 @@
 .accordItem {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.85rem;
 }
 
 .accordName {
   font-size: 0.72rem;
-  color: #555558;
-  width: 62px;
+  color: #7a7a7d;
+  width: 65px;
   text-align: right;
   flex-shrink: 0;
+  letter-spacing: 0.02em;
 }
 
 .progressBarBg {
   flex: 1;
-  height: 12px;
+  height: 8px; /* Sleeker bar height */
   background-color: #edeae2;
   border-radius: 50px;
   overflow: hidden;
@@ -388,29 +453,43 @@
 
 .progressBarFill {
   height: 100%;
-  background-color: #313134;
+  background-color: #2d2d2f; /* Charcoal luxury fills */
   border-radius: 50px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   padding-right: 6px;
+  width: 0;
+  animation: loadBar 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes loadBar {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--progress-width);
+  }
 }
 
 .progressValue {
-  font-size: 0.6rem;
+  font-size: 0.52rem;
   color: #ffffff;
-  font-weight: 700;
+  font-weight: 600;
+  opacity: 0.85;
 }
 
 .profileCell, .bestForCell {
-  line-height: 1.5;
-  font-size: 0.88rem;
-  max-width: 320px;
+  line-height: 1.6;
+  font-size: 0.86rem;
+  color: #3e3e40;
+  max-width: 300px;
   margin: 0 auto;
 }
 
 .notesCell {
-  height: 120px; /* Empty tall cell for visual matches */
+  height: 140px;
+  background-color: rgba(245, 241, 232, 0.04);
 }
 
 /* Responsive queries */

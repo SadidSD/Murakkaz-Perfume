@@ -126,7 +126,10 @@ export default function ComparePage() {
             {selectedSlots.map((slot, index) => (
               <div key={index} className={styles.slotColumn}>
                 {slot ? (
-                  <div className={styles.filledSlot}>
+                  <div className={`${styles.filledSlot} ${slot.name === "Jade Serenity" ? styles.recommendedCard : ""}`}>
+                    {slot.name === "Jade Serenity" && (
+                      <span className={styles.cardRecommendedBadge}>Recommended</span>
+                    )}
                     <button 
                       className={styles.removeBtn} 
                       onClick={() => handleRemoveProduct(index)}
@@ -220,39 +223,69 @@ export default function ComparePage() {
           <div className={styles.tableContainer}>
             <table className={styles.compareTable}>
               <tbody>
-                {/* Row 1: Name */}
-                <tr>
+                {/* Row 1: Name (Sticky Header Row) */}
+                <tr className={styles.stickyHeaderRow}>
                   <td className={styles.featureTitle}>Name</td>
                   {selectedSlots.map((slot, idx) => (
-                    <td key={idx} className={styles.productNameCell}>{slot ? slot.name : ""}</td>
+                    <td 
+                      key={idx} 
+                      className={`${styles.productNameCell} ${slot?.name === "Jade Serenity" ? styles.recommendedColumn : ""}`}
+                    >
+                      {slot ? (
+                        <div className={styles.nameHeaderContainer}>
+                          {slot.name === "Jade Serenity" && (
+                            <span className={styles.recommendedBadge}>Recommended</span>
+                          )}
+                          <span className={styles.productNameText}>{slot.name}</span>
+                        </div>
+                      ) : ""}
+                    </td>
                   ))}
                 </tr>
                 {/* Row 2: Brand */}
                 <tr>
                   <td className={styles.featureTitle}>Brand</td>
                   {selectedSlots.map((slot, idx) => (
-                    <td key={idx}>{slot ? slot.brand : ""}</td>
+                    <td 
+                      key={idx} 
+                      className={slot?.name === "Jade Serenity" ? styles.recommendedColumn : ""}
+                    >
+                      {slot ? slot.brand : ""}
+                    </td>
                   ))}
                 </tr>
                 {/* Row 3: Inspired By */}
                 <tr>
                   <td className={styles.featureTitle}>Inspired By</td>
                   {selectedSlots.map((slot, idx) => (
-                    <td key={idx}>{slot ? slot.inspiredBy : ""}</td>
+                    <td 
+                      key={idx} 
+                      className={slot?.name === "Jade Serenity" ? styles.recommendedColumn : ""}
+                    >
+                      {slot ? slot.inspiredBy : ""}
+                    </td>
                   ))}
                 </tr>
                 {/* Row 4: Price */}
                 <tr>
                   <td className={styles.featureTitle}>Price</td>
                   {selectedSlots.map((slot, idx) => (
-                    <td key={idx}>{slot ? slot.price : ""}</td>
+                    <td 
+                      key={idx} 
+                      className={slot?.name === "Jade Serenity" ? styles.recommendedColumn : ""}
+                    >
+                      {slot ? slot.price : ""}
+                    </td>
                   ))}
                 </tr>
                 {/* Row 5: Community Rating */}
                 <tr>
                   <td className={styles.featureTitle}>Community Rating</td>
                   {selectedSlots.map((slot, idx) => (
-                    <td key={idx}>
+                    <td 
+                      key={idx} 
+                      className={slot?.name === "Jade Serenity" ? styles.recommendedColumn : ""}
+                    >
                       {slot ? (
                         <div className={styles.ratingWrapper}>
                           <span className={styles.starIcon}>★</span> {slot.rating}
@@ -265,42 +298,70 @@ export default function ComparePage() {
                 <tr>
                   <td className={styles.featureTitle}>Scent Profile</td>
                   {selectedSlots.map((slot, idx) => (
-                    <td key={idx} className={styles.profileCell}>{slot ? slot.profile : ""}</td>
+                    <td 
+                      key={idx} 
+                      className={`${styles.profileCell} ${slot?.name === "Jade Serenity" ? styles.recommendedColumn : ""}`}
+                    >
+                      {slot ? slot.profile : ""}
+                    </td>
                   ))}
                 </tr>
                 {/* Row 7: Longevity (Lasting Power) */}
                 <tr>
                   <td className={styles.featureTitle}>Longevity<br />(Lasting Power)</td>
                   {selectedSlots.map((slot, idx) => (
-                    <td key={idx}>{slot ? slot.longevity : ""}</td>
+                    <td 
+                      key={idx} 
+                      className={slot?.name === "Jade Serenity" ? styles.recommendedColumn : ""}
+                    >
+                      {slot ? slot.longevity : ""}
+                    </td>
                   ))}
                 </tr>
                 {/* Row 8: Projection (Scent Radius) */}
                 <tr>
                   <td className={styles.featureTitle}>Projection<br />(Scent Radius)</td>
                   {selectedSlots.map((slot, idx) => (
-                    <td key={idx}>{slot ? slot.projection : ""}</td>
+                    <td 
+                      key={idx} 
+                      className={slot?.name === "Jade Serenity" ? styles.recommendedColumn : ""}
+                    >
+                      {slot ? slot.projection : ""}
+                    </td>
                   ))}
                 </tr>
                 {/* Row 9: Sweetness Level */}
                 <tr>
                   <td className={styles.featureTitle}>Sweetness Level</td>
                   {selectedSlots.map((slot, idx) => (
-                    <td key={idx}>{slot ? slot.sweetness : ""}</td>
+                    <td 
+                      key={idx} 
+                      className={slot?.name === "Jade Serenity" ? styles.recommendedColumn : ""}
+                    >
+                      {slot ? slot.sweetness : ""}
+                    </td>
                   ))}
                 </tr>
                 {/* Row 10: Best For */}
                 <tr>
                   <td className={styles.featureTitle}>Best For</td>
                   {selectedSlots.map((slot, idx) => (
-                    <td key={idx} className={styles.bestForCell}>{slot ? slot.bestFor : ""}</td>
+                    <td 
+                      key={idx} 
+                      className={`${styles.bestForCell} ${slot?.name === "Jade Serenity" ? styles.recommendedColumn : ""}`}
+                    >
+                      {slot ? slot.bestFor : ""}
+                    </td>
                   ))}
                 </tr>
                 {/* Row 11: Accord */}
                 <tr>
                   <td className={styles.featureTitle}>Accord</td>
                   {selectedSlots.map((slot, idx) => (
-                    <td key={idx}>
+                    <td 
+                      key={idx} 
+                      className={slot?.name === "Jade Serenity" ? styles.recommendedColumn : ""}
+                    >
                       {slot ? (
                         <div className={styles.accordsList}>
                           {slot.accords.map((accord) => (
@@ -309,7 +370,7 @@ export default function ComparePage() {
                               <div className={styles.progressBarBg}>
                                 <div 
                                   className={styles.progressBarFill} 
-                                  style={{ width: `${accord.value}%` }}
+                                  style={{ "--progress-width": `${accord.value}%` } as React.CSSProperties}
                                 >
                                   <span className={styles.progressValue}>{accord.value}%</span>
                                 </div>
@@ -325,7 +386,10 @@ export default function ComparePage() {
                 <tr>
                   <td className={styles.featureTitle}>Fragrance Notes</td>
                   {selectedSlots.map((slot, idx) => (
-                    <td key={idx} className={styles.notesCell}>
+                    <td 
+                      key={idx} 
+                      className={`${styles.notesCell} ${slot?.name === "Jade Serenity" ? styles.recommendedColumn : ""}`}
+                    >
                       {/* Left blank / empty matching the screenshot block */}
                     </td>
                   ))}
