@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import styles from "./page.module.css";
 
 interface CompareProduct {
@@ -138,7 +137,7 @@ export default function ComparePage() {
                       ×
                     </button>
                     <div className={styles.imageContainer}>
-                      <Image
+                      <img
                         src={slot.image}
                         alt={slot.name}
                         width={180}
@@ -190,7 +189,7 @@ export default function ComparePage() {
                     className={styles.modalItem}
                     onClick={() => handleSelectProduct(prod)}
                   >
-                    <Image
+                    <img
                       src={prod.image}
                       alt={prod.name}
                       width={64}

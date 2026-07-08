@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import styles from "./Navbar.module.css";
 
@@ -9,12 +8,11 @@ export default function Navbar() {
     <header className={styles.header}>
       <nav className={styles.nav}>
         <div className={styles.navbarWrapper}>
-          <Image
+          <img
             src="/images/navbar/navbar M.svg"
             alt="Murakkaz Navigation"
             width={1348}
             height={64}
-            priority
             className={styles.navbarSvg}
           />
 
