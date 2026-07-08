@@ -536,17 +536,65 @@
   width: 100%;
 }
 
-.storeSearchRow {
-  margin-bottom: 1.5rem;
+.storeControlsRow {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.zoneDropdownWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.zoneSelect {
+  padding: 0.65rem 2.5rem 0.65rem 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  border-radius: 50px; /* Pill shape */
+  background-color: transparent;
+  color: var(--foreground);
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  min-width: 100px;
+}
+
+.zoneCaret {
+  position: absolute;
+  right: 1.25rem;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  color: var(--foreground);
+}
+
+.searchWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 280px;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 1.15rem;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  color: #7a7a7d;
 }
 
 .storeSearchInput {
   width: 100%;
-  max-width: 400px;
-  padding: 0.65rem 1rem;
+  padding: 0.65rem 1.5rem 0.65rem 2.5rem;
   font-size: 0.85rem;
   border: 1px solid var(--border);
-  border-radius: 4px;
+  border-radius: 50px; /* Pill shape */
   background-color: transparent;
   color: var(--foreground);
   outline: none;
@@ -554,7 +602,7 @@
 }
 
 .storeSearchInput::placeholder {
-  color: var(--muted);
+  color: #7a7a7d;
 }
 
 .storeSearchInput:focus {
@@ -564,58 +612,56 @@
 .storeGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
+  gap: 1.5rem;
 }
 
 .storeCard {
   display: flex;
   align-items: flex-start;
-  gap: 1rem;
-  padding: 1.25rem 1.5rem;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background-color: transparent;
-  transition: box-shadow 0.2s ease;
+  gap: 0.5rem;
+  padding: 2rem 2.5rem;
+  border: 1px solid #dcdad5;
+  border-radius: 8px;
+  background-color: #f2eee4; /* Solid warm-cream card background */
+  transition: all 0.2s ease;
 }
 
 .storeCard:hover {
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
 }
 
-.storeIcon {
+.storeCardNum {
+  font-family: var(--font-playfair), var(--font-lora), serif;
+  font-size: 1.65rem;
+  font-weight: 500;
+  color: #a3a3a6;
+  width: 44px;
   flex-shrink: 0;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--dark-bg);
-  color: #ffffff;
-  border-radius: 50%;
+  line-height: 1.15;
 }
 
-.storeInfo {
+.storeCardContent {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.35rem;
+  flex: 1;
 }
 
-.storeName {
-  font-size: 0.9rem;
+.storeCardAddress {
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--foreground);
+  line-height: 1.4;
 }
 
-.storeAddress {
+.storeCardZone {
   font-size: 0.8rem;
-  line-height: 1.5;
-  color: var(--muted);
+  color: #7a7a7d;
 }
 
-.storePhone {
+.storeCardContract {
   font-size: 0.8rem;
-  color: var(--muted);
-  margin-top: 0.15rem;
+  color: #7a7a7d;
 }
 
 /* ==============================

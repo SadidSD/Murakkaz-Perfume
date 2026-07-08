@@ -24,9 +24,10 @@ export interface GalleryImage {
 }
 
 export interface StoreLocation {
-  name: string;
+  id: string;
   address: string;
-  phone: string;
+  zone: string;
+  contract: string;
 }
 
 export const upcomingEvents: UpcomingEvent[] = [
@@ -169,18 +170,21 @@ export const galleryImages: GalleryImage[] = [
 
 export const storeLocations: StoreLocation[] = [
   {
-    name: "Murakkaz Dhaka Flagship",
-    address: "House 42, Road 11, Block E, Bashundhara R/A, Dhaka - 1229",
-    phone: "+880 1234-567890",
+    id: "01",
+    address: "House 45, Road 11, Block H, Banani, Dhaka - 1213",
+    zone: "Dhaka, Banani",
+    contract: "01735......49",
   },
   {
-    name: "Murakkaz Chittagong",
-    address: "Level 4, GEC More, Agrabad Commercial Area, Chittagong, BD - 4100",
-    phone: "+880 9876-543210",
+    id: "02",
+    address: "Level 3, Shimanto Square, Dhanmondi, Dhaka - 1209",
+    zone: "Dhaka, Dhanmondi",
+    contract: "01745......59",
   },
   {
-    name: "Murakkaz Sylhet Outlet",
-    address: "Jail Road, Zindabazar, Opposite City Center, Sylhet, BD - 3100",
-    phone: "+880 1122-334455",
+    id: "03",
+    address: "GEC Circle, Central Shopping Arcade, Level 1, Chattogram - 4000",
+    zone: "Chattogram, Nasirabad",
+    contract: "01765......89",
   },
 ];
