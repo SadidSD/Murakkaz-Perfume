@@ -58,18 +58,19 @@ export default function ProductCard({
           </button>
         </div>
 
-        <p className={styles.description}>{description}</p>
+        <div className={styles.descriptionRow}>
+          <p className={styles.description}>{description}</p>
+          <div className={styles.priceRow}>
+            <span className={styles.price}>{price}</span>
+            <span className={styles.volume}>{volume}</span>
+          </div>
+        </div>
 
         <div className={styles.ratingRow}>
           <span className={styles.star}>★</span>
           <span className={styles.ratingText}>
             {rating.toFixed(1)} <span className={styles.reviews}>({reviews})</span>
           </span>
-        </div>
-
-        <div className={styles.priceRow}>
-          <span className={styles.price}>{price}</span>
-          <span className={styles.volume}>{volume}</span>
         </div>
 
         <div className={styles.actions}>
