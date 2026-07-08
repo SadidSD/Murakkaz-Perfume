@@ -110,47 +110,45 @@ export default function FilterSidebar() {
                 </svg>
               </button>
 
-              <div
-                className={`${styles.optionsContainer} ${
-                  isExpanded ? styles.expanded : styles.collapsed
-                }`}
-              >
-                <div className={styles.optionsContent}>
-                  {category.type === "slider" ? (
-                    <div className={styles.sliderWrapper}>
-                      <input
-                        type="range"
-                        min="1000"
-                        max="3000"
-                        step="50"
-                        value={maxPrice}
-                        onChange={(e) => setMaxPrice(Number(e.target.value))}
-                        className={styles.rangeInput}
-                      />
-                      <div className={styles.sliderValues}>
-                        <span className={styles.priceMin}>1,000tk</span>
-                        <span className={styles.priceCurrent}>{maxPrice.toLocaleString()}tk</span>
-                        <span className={styles.priceMax}>3,000tk</span>
+              {isExpanded && (
+                <div className={`${styles.optionsContainer} ${styles.expanded}`}>
+                  <div className={styles.optionsContent}>
+                    {category.type === "slider" ? (
+                      <div className={styles.sliderWrapper}>
+                        <input
+                          type="range"
+                          min="1000"
+                          max="3000"
+                          step="50"
+                          value={maxPrice}
+                          onChange={(e) => setMaxPrice(Number(e.target.value))}
+                          className={styles.rangeInput}
+                        />
+                        <div className={styles.sliderValues}>
+                          <span className={styles.priceMin}>1,000tk</span>
+                          <span className={styles.priceCurrent}>{maxPrice.toLocaleString()}tk</span>
+                          <span className={styles.priceMax}>3,000tk</span>
+                        </div>
                       </div>
-                    </div>
-                  ) : (
-                    category.options?.map((option) => {
-                      const isChecked = selectedFilters[category.id]?.includes(option);
-                      return (
-                        <label key={option} className={styles.optionLabel}>
-                          <input
-                            type="checkbox"
-                            className={styles.checkboxInput}
-                            checked={isChecked}
-                            onChange={() => handleCheckboxChange(category.id, option)}
-                          />
-                          <span className={styles.optionText}>{option}</span>
-                        </label>
-                      );
-                    })
-                  )}
+                    ) : (
+                      category.options?.map((option) => {
+                        const isChecked = selectedFilters[category.id]?.includes(option);
+                        return (
+                          <label key={option} className={styles.optionLabel}>
+                            <input
+                              type="checkbox"
+                              className={styles.checkboxInput}
+                              checked={isChecked}
+                              onChange={() => handleCheckboxChange(category.id, option)}
+                            />
+                            <span className={styles.optionText}>{option}</span>
+                          </label>
+                        );
+                      })
+                    )}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           );
         })}
