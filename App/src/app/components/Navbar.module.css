@@ -20,15 +20,14 @@
 
 .navbarWrapper {
   width: 100%;
-  display: flex;
-  justify-content: center;
+  max-width: 1348px;
+  margin: 0 auto;
   position: relative;
 }
 
 .navbarSvg {
   width: 100%;
   height: auto;
-  max-width: 1348px;
   display: block;
 }
 
