@@ -39,14 +39,14 @@ export default function EventsPage() {
                 <div className={styles.dateBlock}>
                   <span className={styles.dateDay}>{event.day}</span>
                   <span className={styles.dateMonth}>{event.month}</span>
+                  <p className={styles.upcomingTime}>{event.time}</p>
                 </div>
 
-                {/* Col 2: Title + Location + Days Left + Time + Button */}
+                {/* Col 2: Title + Location + Days Left + Button */}
                 <div className={styles.upcomingInfo}>
                   <h3 className={styles.upcomingTitle}>{event.title}</h3>
                   <p className={styles.upcomingLocation}>{event.location}</p>
                   <p className={styles.upcomingDaysLeft}>{event.daysLeft}</p>
-                  <p className={styles.upcomingTime}>{event.time}</p>
                   <button className={styles.setReminderBtn}>Set Reminder</button>
                 </div>
 
@@ -54,7 +54,14 @@ export default function EventsPage() {
                 {idx % 2 === 0 ? (
                   <>
                     <div className={styles.upcomingImageWrap}>
-                      <div className={styles.placeholderImage} />
+                      <Image
+                        src="/images/events/box_for_event.svg"
+                        alt="Event Box"
+                        width={302}
+                        height={212}
+                        className={styles.boxSvgImage}
+                        priority
+                      />
                     </div>
                     <div className={styles.upcomingDescWrap}>
                       <p className={styles.upcomingDesc}>{event.description}</p>
@@ -66,7 +73,14 @@ export default function EventsPage() {
                       <p className={styles.upcomingDesc}>{event.description}</p>
                     </div>
                     <div className={styles.upcomingImageWrap}>
-                      <div className={styles.placeholderImage} />
+                      <Image
+                        src="/images/events/box_for_event.svg"
+                        alt="Event Box"
+                        width={302}
+                        height={212}
+                        className={styles.boxSvgImage}
+                        priority
+                      />
                     </div>
                   </>
                 )}
