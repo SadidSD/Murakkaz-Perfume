@@ -14,7 +14,8 @@
   width: 100%;
   max-width: 1348px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .navbarWrapper {
@@ -29,3 +30,33 @@
   max-width: 1348px;
   display: block;
 }
+
+.navLinks {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 0.75rem 0 0;
+  width: 100%;
+}
+
+.navLink {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #7a7a7d;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+  padding-bottom: 4px;
+  border-bottom: 1.5px solid transparent;
+}
+
+.navLink:hover {
+  color: #313134;
+}
+
+.navLinkActive {
+  color: #313134;
+  font-weight: 600;
+  border-bottom-color: #313134;
+}
+
